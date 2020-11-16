@@ -14,28 +14,28 @@ El código se va a compilar de cuatro maneras diferentes, seleccionando diferent
 El código se compila mediante el estándar c99:
 `gcc -Wall -std=c99 exampleStrings.c`
 Salida:
-![Screenshot](./home/kali/Escritorio/1.png)
-![Screenshot](./home/kali/Escritorio/2.png)
+![Screenshot](./img/1.png)
+![Screenshot](./img/2.png)
 *Figura 1: salida de la compilación con gcc y el estándar C99.*
 
 El código se compila mediante el estándar c11:
 `gcc -Wall -std=c11 exampleStrings.c`
 Salida:
-![Screenshot](./home/kali/Escritorio/3.png)
-![Screenshot](./home/kali/Escritorio/4.png)
+![Screenshot](./img/3.png)
+![Screenshot](./img/4.png)
 *Figura 2: salida de la compilación con gcc y el estándar C11.*
 
 **G++:**
 El código se compila mediante el estándar c98 en g++:
 `g++ -Wall -std=c++98 exampleStrings.c`
 Salida:
-![Screenshot](/home/kali/Escritorio/5.png)
-![Screenshot](/home/kali/Escritorio/6.png)
+![Screenshot](./img/5.png)
+![Screenshot](./img/6.png)
 *Figura 3: salida de la compilación con g++ y el estándar C98.*
 
 El código se compila mediante el estándar c11 en g++:
 `g++ -Wall -std=c++11 exampleStrings.c`
-![Screenshot](/home/kali/Escritorio/7.png)
+![Screenshot](./img/7.png)
 *Figura 4: salida de la compilación con g++ y el estándar C11.*
 
 **CMAKE:**
@@ -47,7 +47,7 @@ add_executable(app exampleStrings.c)
 ```
 Después, se han utilizado los comandos
 `cmake .` y `make`. Salida:
-![Screenshot](/home/kali/Escritorio/8.png)
+![Screenshot](./img/8.png)
 *Figura 5: salida de la compilación con cmake.*
 
 ## Búsqueda de reglas y recomendaciones
