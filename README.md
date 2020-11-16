@@ -1,2 +1,85 @@
-# dps-lab-1
-Laboratory 1
+Assignment 3
+
+# Assignment 3
+Para esta tarea se nos da un archivo .c que tenemos que compilar y arreglar puesto que da varios errores y warnings. También tenemos que encontrar diferentes reglas y recomendaciones del SEI CERT C Coding Standard que no cumple el código. Los pasos a seguir serían:
+
+1. Compilación
+2. Búsqueda de reglas y recomendaciones
+3. Modificación del código
+
+## Compilación
+El código se va a compilar de cuatro maneras diferentes, seleccionando diferentes estándares y herramientas de compilación.
+
+**GCC:**
+El código se compila mediante el estándar c99:
+`gcc -Wall -std=c99 exampleStrings.c`
+Salida:
+![03cc090069d7c13b4f050795748771fc.png](../../../_resources/61ddaa6a4b1e4788985a04aeb199af4c.png)
+![68425bf620f93156bf777ecde281cab1.png](../../../_resources/1fb539ddc2194d988fb773d140b1e578.png)
+*Figura 1: salida de la compilación con gcc y el estándar C99.*
+
+El código se compila mediante el estándar c11:
+`gcc -Wall -std=c11 exampleStrings.c`
+Salida:
+![10328045649871f18fd87f6271180977.png](../../../_resources/d6ceadd0a1e54ff49c48916b6e3361bd.png)
+![bbd3ff2dcfbc1ce25daf049c36f4f3e4.png](../../../_resources/b2e82df259e345f6aaecaa54e5e908f6.png)
+*Figura 2: salida de la compilación con gcc y el estándar C11.*
+
+**G++:**
+El código se compila mediante el estándar c98 en g++:
+`g++ -Wall -std=c++98 exampleStrings.c`
+Salida:
+![8ea638548978cf95704530feba95ee57.png](../../../_resources/506299055e864ef09a3908f16d5c4644.png)
+![9c4233daa44b7bb57e5832f5c43619da.png](../../../_resources/1d22409a3df940b0b90e7d23bb400c9c.png)
+*Figura 3: salida de la compilación con g++ y el estándar C98.*
+
+El código se compila mediante el estándar c11 en g++:
+`g++ -Wall -std=c++11 exampleStrings.c`
+![cbd20bf7c58e1a4aca3402fe9bb3ef58.png](../../../_resources/b2675740fe7a4e0b9db8aed7f74ada51.png)
+*Figura 4: salida de la compilación con g++ y el estándar C11.*
+
+**CMAKE:**
+Para compilar con cmake se ha creado el fichero *CMakeLists.txt*, que contiene las siguientes líneas:
+```
+cmake_minimum_required(VERSION 2.8)
+project(exampleStringsCmake)
+add_executable(app exampleStrings.c)
+```
+Después, se han utilizado los comandos
+`cmake .` y `make`. Salida:
+![47c1f0a87da263b7d2ade83d4de31ad3.png](../../../_resources/63ae3e4bde884e0f9f037c2d9df0a7e1.png)
+*Figura 5: salida de la compilación con cmake.*
+
+## Búsqueda de reglas y recomendaciones
+Las reglas y recomendaciones encontradas en el código fuente han sido:
+- **STR30-C**: Do not attempt to modify string literals (Regla)
+En la línea 101
+- **STR32-C**: Do not pass a non-null-terminated character sequence to a library function that expects a string (Regla)
+En las líneas 83, 97 y 103. 
+- **ARR32-C**: Ensure size arguments for variable length arrays are in a valid range (Regla)
+En la línea 48.
+- **MEM35-C**: Allocate sufficient memory for an object (Regla)
+En las líneas 17, 18 y 66.
+- **MSC24-C**: Do not use deprecated or obsolescent functions (Recomendación)
+En la línea 51.
+
+## Modificación del código
+Para solucionar los warnings y errores del código nos fijamos en la salida de compilarlo con g++ y el estándar C11 *(Figura 4)* y vamos modificando el código, quedando un nuevo código que está disponible en un archivo llamado *exampleStringsFixed.c*
+Dichos errores junto con su solución han sido:
+
+- En la línea 32 hay un `return 1;` de una función void, por lo que para arreglar el error se pone `exit(1);` en su lugar para que devuelva 1 e interrumpa la ejecución del código. De todos modos, el método no se llama en todo el código por lo que lo podemos comentar sin problema.
+- En la línea 39 `slash = strrchr(pathname, '/');` nos dice que no se puede convertir de `const char*` a `char*`, para solucionar esto utilizamos la función `malloc()` para reservar memoria. Como el malloc() devuelve un void* hay que hacer un casting a char*.
+- En la línea 48 se ha modificado el tamaño de response de 8 a 2 ya que el caracter que se espera (y o n) es de tamaño 1. El tamaño es 2 porque se le añade el '\0' del final.
+- En la línea 51 se encuentra `gets(response);` y el warning nos sale porque esta función está deprecated. Para evitar que nos salga este aviso la solución es cambiar la función por `fgets(response, sizeof(response),stdin);`
+- La línea 67 (`char *ptr_char  = "new string literal";`) corresponde a una variable que no tiene sentido usar por lo que se comenta; de todos modos, si se quisiera utilizar daría error por lo que para arreglar esto se pondría `char ptr_char[] = "new string literal";` Además, en la línea 101 se hace una modificación que estaría mal puesto que se trata de un string literal.
+- Las líneas 68, 69 y 73 hacen referencia a las variables `size_array1, size_array2 y analitic3` que no son usadas en todo el código, por lo que para evitar que aparezcan estos warnings, las comentamos.
+- En la línea 73 se inicializa la variable *analitic3* de la siguiente manera: `char analitic3[100]="аналитик";`
+Esta línea ha sido comentada ya que no se utiliza la variable pero en el caso de que se usara el tamaño del char array debería ser 16 (8*2) ya que se trata de wide characters.
+- En la línea 98 se pone `sizeof` en vez de `strlen` ya que `strlen` no tiene en cuenta el carácter nulo del final.
+
+**Nota:** Si nos fijamos en la salida de las otras imágenes, cuentan con un error en las líneas 22 y 25 que hace referencia a la declaración de la variable *s1* mediante las líneas *R"foo(Hello World)foo";*
+Es una manera de definir los strings literals que se implementó a partir de C++11, por lo que si compilamos con el estándar C++11 en g++ no sale error. 
+
+## Referencias:
+- https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard
+- https://en.cppreference.com/w/cpp/language/string_literal
