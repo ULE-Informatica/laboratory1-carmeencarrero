@@ -14,15 +14,15 @@ El código se va a compilar de cuatro maneras diferentes, seleccionando diferent
 El código se compila mediante el estándar c99:
 `gcc -Wall -std=c99 exampleStrings.c`
 Salida:
-![Screenshot](/home/kali/Escritorio/1.png)
-![Screenshot](/home/kali/Escritorio/2.png)
+![Screenshot](./home/kali/Escritorio/1.png)
+![Screenshot](./home/kali/Escritorio/2.png)
 *Figura 1: salida de la compilación con gcc y el estándar C99.*
 
 El código se compila mediante el estándar c11:
 `gcc -Wall -std=c11 exampleStrings.c`
 Salida:
-![Screenshot](/home/kali/Escritorio/3.png)
-![Screenshot](/home/kali/Escritorio/4.png)
+![Screenshot](./home/kali/Escritorio/3.png)
+![Screenshot](./home/kali/Escritorio/4.png)
 *Figura 2: salida de la compilación con gcc y el estándar C11.*
 
 **G++:**
