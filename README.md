@@ -14,28 +14,28 @@ El código se va a compilar de cuatro maneras diferentes, seleccionando diferent
 El código se compila mediante el estándar c99:
 `gcc -Wall -std=c99 exampleStrings.c`
 Salida:
-![03cc090069d7c13b4f050795748771fc.png](../../../_resources/61ddaa6a4b1e4788985a04aeb199af4c.png)
-![68425bf620f93156bf777ecde281cab1.png](../../../_resources/1fb539ddc2194d988fb773d140b1e578.png)
+![Screenshot](/home/kali/Escritorio/1.png)
+![Screenshot](/home/kali/Escritorio/2.png)
 *Figura 1: salida de la compilación con gcc y el estándar C99.*
 
 El código se compila mediante el estándar c11:
 `gcc -Wall -std=c11 exampleStrings.c`
 Salida:
-![10328045649871f18fd87f6271180977.png](../../../_resources/d6ceadd0a1e54ff49c48916b6e3361bd.png)
-![bbd3ff2dcfbc1ce25daf049c36f4f3e4.png](../../../_resources/b2e82df259e345f6aaecaa54e5e908f6.png)
+![Screenshot](/home/kali/Escritorio/3.png)
+![Screenshot](/home/kali/Escritorio/4.png)
 *Figura 2: salida de la compilación con gcc y el estándar C11.*
 
 **G++:**
 El código se compila mediante el estándar c98 en g++:
 `g++ -Wall -std=c++98 exampleStrings.c`
 Salida:
-![8ea638548978cf95704530feba95ee57.png](../../../_resources/506299055e864ef09a3908f16d5c4644.png)
-![9c4233daa44b7bb57e5832f5c43619da.png](../../../_resources/1d22409a3df940b0b90e7d23bb400c9c.png)
+![Screenshot](/home/kali/Escritorio/5.png)
+![Screenshot](/home/kali/Escritorio/6.png)
 *Figura 3: salida de la compilación con g++ y el estándar C98.*
 
 El código se compila mediante el estándar c11 en g++:
 `g++ -Wall -std=c++11 exampleStrings.c`
-![cbd20bf7c58e1a4aca3402fe9bb3ef58.png](../../../_resources/b2675740fe7a4e0b9db8aed7f74ada51.png)
+![Screenshot](/home/kali/Escritorio/7.png)
 *Figura 4: salida de la compilación con g++ y el estándar C11.*
 
 **CMAKE:**
@@ -47,7 +47,7 @@ add_executable(app exampleStrings.c)
 ```
 Después, se han utilizado los comandos
 `cmake .` y `make`. Salida:
-![47c1f0a87da263b7d2ade83d4de31ad3.png](../../../_resources/63ae3e4bde884e0f9f037c2d9df0a7e1.png)
+![Screenshot](/home/kali/Escritorio/8.png)
 *Figura 5: salida de la compilación con cmake.*
 
 ## Búsqueda de reglas y recomendaciones
