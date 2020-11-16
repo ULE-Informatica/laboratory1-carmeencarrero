@@ -16,6 +16,7 @@ El código se compila mediante el estándar c99:
 Salida:
 ![Screenshot](./img/1.png)
 ![Screenshot](./img/2.png)
+
 *Figura 1: salida de la compilación con gcc y el estándar C99.*
 
 El código se compila mediante el estándar c11:
@@ -23,6 +24,7 @@ El código se compila mediante el estándar c11:
 Salida:
 ![Screenshot](./img/3.png)
 ![Screenshot](./img/4.png)
+
 *Figura 2: salida de la compilación con gcc y el estándar C11.*
 
 **G++:**
@@ -31,11 +33,13 @@ El código se compila mediante el estándar c98 en g++:
 Salida:
 ![Screenshot](./img/5.png)
 ![Screenshot](./img/6.png)
+
 *Figura 3: salida de la compilación con g++ y el estándar C98.*
 
 El código se compila mediante el estándar c11 en g++:
 `g++ -Wall -std=c++11 exampleStrings.c`
 ![Screenshot](./img/7.png)
+
 *Figura 4: salida de la compilación con g++ y el estándar C11.*
 
 **CMAKE:**
@@ -53,13 +57,15 @@ Después, se han utilizado los comandos
 ## Búsqueda de reglas y recomendaciones
 Las reglas y recomendaciones encontradas en el código fuente han sido:
 - **STR30-C**: Do not attempt to modify string literals (Regla)
-En la línea 101
+En la línea 101.
 - **STR32-C**: Do not pass a non-null-terminated character sequence to a library function that expects a string (Regla)
 En las líneas 83, 97 y 103. 
 - **ARR32-C**: Ensure size arguments for variable length arrays are in a valid range (Regla)
 En la línea 48.
 - **MEM35-C**: Allocate sufficient memory for an object (Regla)
 En las líneas 17, 18 y 66.
+- **STR11-C**: Do not specify the bound of a character array initialized with a string literal (Recomendación)
+En las líneas 66 y 67.
 - **MSC24-C**: Do not use deprecated or obsolescent functions (Recomendación)
 En la línea 51.
 
